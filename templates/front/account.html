@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account | VELORA</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='front/style.css') }}">
+</head>
+<body>
+
+    {% include 'front/share/navbar.html' %}
+
+    <main>
+
+        <section class="page-banner">
+            <div class="container text-center">
+                <span>ACCOUNT</span>
+                <h1>My VELORA</h1>
+            </div>
+        </section>
+
+        <section class="account-section">
+            <div class="container account-grid">
+
+                <div class="profile-box">
+                    <div class="avatar"></div>
+                    <h3>VELORA Member</h3>
+                    <p>Premium Client</p>
+                </div>
+
+                <div class="orders-box">
+                    <h3>Recent Orders</h3>
+
+                    <div class="order-item">
+                        <span>Luxury Coat</span>
+                        <strong>$149</strong>
+                    </div>
+
+                    <div class="order-item">
+                        <span>Elegant Dress</span>
+                        <strong>$219</strong>
+                    </div>
+
+                    <div class="order-item">
+                        <span>Designer Suit</span>
+                        <strong>$299</strong>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    {% include 'front/share/footer.html' %}
+
+</body>
+</html>

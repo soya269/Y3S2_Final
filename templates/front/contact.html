@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Contact | VELORA</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Custom CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='front/style.css') }}"
+    >
+
+
+
+</head>
+
+<body>
+
+{% include 'front/share/navbar.html' %}
+
+<main>
+
+    <!-- HERO -->
+    <section class="contact-hero">
+
+        <div class="container">
+
+            <span>CONTACT VELORA</span>
+
+            <h1>
+                Connect With Luxury
+            </h1>
+
+            <p>
+                Reach out for premium fashion consultation,
+                exclusive collections, and personalized styling.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section class="contact-section">
+
+        <div class="container">
+
+            <div class="row g-0 contact-box">
+
+                <!-- LEFT -->
+                <div class="col-lg-5">
+
+                    <div class="contact-info">
+
+                        <span class="mini-title">
+                            VELORA HOUSE
+                        </span>
+
+                        <h2>
+                            We'd Love To Hear From You
+                        </h2>
+
+                        <p>
+                            Connect with our luxury fashion team for
+                            styling consultations, premium support,
+                            and exclusive member collections.
+                        </p>
+
+                        <div class="contact-item">
+
+                            <strong>Email</strong>
+
+                            hello@velora.com
+
+                        </div>
+
+                        <div class="contact-item">
+
+                            <strong>Phone</strong>
+
+                            +855 12 345 678
+
+                        </div>
+
+                        <div class="contact-item">
+
+                            <strong>Location</strong>
+
+                            Phnom Penh, Cambodia
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT -->
+                <div class="col-lg-7">
+
+                    <div class="contact-form">
+
+                        <h3>
+                            Send Us A Message
+                        </h3>
+
+                        <form>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Your Name"
+                                    >
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <input
+                                        type="email"
+                                        class="form-control"
+                                        placeholder="Email Address"
+                                    >
+
+                                </div>
+
+                            </div>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Subject"
+                            >
+
+                            <textarea
+                                class="form-control"
+                                placeholder="Your Message"
+                            ></textarea>
+
+                            <button
+                                class="btn-send"
+                                type="submit"
+                            >
+                                Send Message
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+    <section class="feature-section">
+
+        <div class="container">
+
+            <div class="row g-4">
+
+                <div class="col-lg-4">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            🚚
+                        </div>
+
+                        <h4>
+                            Fast Delivery
+                        </h4>
+
+                        <p>
+                            Premium worldwide shipping
+                            with secure delivery service.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            💎
+                        </div>
+
+                        <h4>
+                            Luxury Collections
+                        </h4>
+
+                        <p>
+                            Discover exclusive fashion
+                            inspired by runway trends.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            ⭐
+                        </div>
+
+                        <h4>
+                            Premium Support
+                        </h4>
+
+                        <p>
+                            Dedicated customer service
+                            for all premium members.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+{% include 'front/share/footer.html' %}
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+</body>
+</html>

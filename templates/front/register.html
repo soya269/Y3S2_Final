@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | VELORA</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='front/style.css') }}"
+    >
+</head>
+<body>
+
+    {% include 'front/share/navbar.html' %}
+
+    <main>
+
+        <section
+            class="d-flex justify-content-center align-items-center"
+            style="min-height:80vh;"
+        >
+            <div
+                class="bg-white shadow rounded-4 p-5"
+                style="width:100%; max-width:500px;"
+            >
+
+                <span
+                    style="
+                        color:#c79a3b;
+                        font-size:14px;
+                        letter-spacing:3px;
+                        font-weight:600;
+                    "
+                >
+                    JOIN VELORA
+                </span>
+
+                <h2 class="mt-3 mb-2 fw-bold">
+                    Create Account
+                </h2>
+
+                <p class="text-muted mb-4">
+                    Become part of our premium fashion house.
+                </p>
+
+                <form>
+
+                    <input
+                        type="text"
+                        class="form-control mb-3"
+                        placeholder="Full Name"
+                        style="height:55px; border-radius:14px;"
+                    >
+
+                    <input
+                        type="email"
+                        class="form-control mb-3"
+                        placeholder="Email"
+                        style="height:55px; border-radius:14px;"
+                    >
+
+                    <input
+                        type="password"
+                        class="form-control mb-4"
+                        placeholder="Password"
+                        style="height:55px; border-radius:14px;"
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn w-100 fw-bold"
+                        style="
+                            background:#c79a3b;
+                            color:white;
+                            height:55px;
+                            border-radius:30px;
+                        "
+                    >
+                        Register
+                    </button>
+
+                    <div class="text-center mt-4">
+                        <a
+                            href="/login"
+                            class="text-decoration-none"
+                        >
+                            Already have account? Login
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+        </section>
+
+    </main>
+
+    {% include 'front/share/footer.html' %}
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+</body>
+</html>
