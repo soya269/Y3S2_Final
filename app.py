@@ -442,21 +442,12 @@ def place_order():
             orders = json.load(f)
     except:
         orders = []
+
     order_id = random.randint(100000, 999999)
 
     for item in cart_products:
-
         orders.append({
-            "order_id": order_id,
-            "email": email,
-            "customer_name": f"{first_name} {last_name}",
-            "phone": phone,
-            "address": address,
-            "payment_method": payment_method,
-            "product": item["title"],
-            "price": item["price"],
-            "quantity": item["qty"],
-            "total": item["item_total"]
+            ...
         })
 
     with open("orders.json", "w") as f:

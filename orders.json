@@ -24,5 +24,17 @@
         "price": 61,
         "quantity": 1,
         "total": 61
+    },
+    {
+        "order_id": 232263,
+        "email": "nana123@gmail.com",
+        "customer_name": "nana fill",
+        "phone": "09876543",
+        "address": "No. 86A, Street 112",
+        "payment_method": "card",
+        "product": "Classic Comfort Fit Joggers",
+        "price": 25,
+        "quantity": 1,
+        "total": 25
     }
 ]
