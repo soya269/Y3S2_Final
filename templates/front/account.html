@@ -4,57 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account | VELORA</title>
-
     <link rel="stylesheet"
           href="{{ url_for('static', filename='front/style.css') }}">
 </head>
 <body>
-
     {% include 'front/share/navbar.html' %}
+<main>
 
-    <main>
+    <section class="page-banner">
+        <div class="container text-center">
+            <span>ACCOUNT</span>
+            <h1>My VELORA</h1>
+        </div>
+    </section>
 
-        <section class="page-banner">
-            <div class="container text-center">
-                <span>ACCOUNT</span>
-                <h1>My VELORA</h1>
-            </div>
-        </section>
+    <section class="account-section">
 
-        <section class="account-section">
-            <div class="container account-grid">
+        <div class="container account-grid">
 
-                <div class="profile-box">
-                    <div class="avatar"></div>
-                    <h3>VELORA Member</h3>
-                    <p>Premium Client</p>
+            <!-- Profile Card -->
+            <div class="profile-card">
+
+                <div class="profile-avatar">
+                    {{ user.first_name[0] }}{{ user.last_name[0] }}
                 </div>
 
-                <div class="orders-box">
-                    <h3>Recent Orders</h3>
+                <h2>
+                    {{ user.first_name }} {{ user.last_name }}
+                </h2>
 
-                    <div class="order-item">
-                        <span>Luxury Coat</span>
-                        <strong>$149</strong>
-                    </div>
+                <p class="profile-email">
+                    {{ user.email }}
+                </p>
 
-                    <div class="order-item">
-                        <span>Elegant Dress</span>
-                        <strong>$219</strong>
-                    </div>
-
-                    <div class="order-item">
-                        <span>Designer Suit</span>
-                        <strong>$299</strong>
-                    </div>
+                <div class="member-badge">
+                    Premium Member
                 </div>
 
+                <div class="account-details">
+
+                    <div class="detail-row">
+                        <span>First Name</span>
+                        <strong>{{ user.first_name }}</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Last Name</span>
+                        <strong>{{ user.last_name }}</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Email</span>
+                        <strong>{{ user.email }}</strong>
+                    </div>
+
+                </div>
+
+                <a href="/logout" class="logout-btn">
+                    Logout
+                </a>
+
             </div>
-        </section>
 
-    </main>
+            <!-- Orders Card -->
+<div class="orders-card">
 
+    <h3>Recent Orders</h3>
+
+    {% if orders %}
+
+        {% for order in orders %}
+
+        <div class="order-item">
+
+            <div>
+                <strong>{{ order.product }}</strong>
+                <p>Order #{{ order.order_id }}</p>
+                <small>Qty: {{ order.quantity }}</small>
+            </div>
+
+            <span>${{ order.price }}</span>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No orders yet.</p>
+
+    {% endif %}
+
+</div>
+
+        </div>
+
+    </section>
+
+</main>
     {% include 'front/share/footer.html' %}
-
 </body>
 </html>

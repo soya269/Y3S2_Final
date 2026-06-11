@@ -1,0 +1,28 @@
+[
+    {
+        "order_id": 1001,
+        "email": "nana123@gmail.com",
+        "product": "Black Hoodie",
+        "price": 49,
+        "quantity": 1
+    },
+    {
+        "order_id": 1002,
+        "email": "nana123@gmail.com",
+        "product": "White T-Shirt",
+        "price": 29,
+        "quantity": 2
+    },
+    {
+        "order_id": 823217,
+        "email": "nana123@gmail.com",
+        "customer_name": "nana fill",
+        "phone": "09876543",
+        "address": "No. 86A, Street 112",
+        "payment_method": "card",
+        "product": "Classic Navy Blue Baseball Cap",
+        "price": 61,
+        "quantity": 1,
+        "total": 61
+    }
+]

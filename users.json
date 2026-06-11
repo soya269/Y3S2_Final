@@ -1,0 +1,40 @@
+[
+    {
+        "first_name": "Admin",
+        "last_name": "User",
+        "email": "admin@gmail.com",
+        "password": "123456"
+    },
+    {
+        "first_name": "Ngan",
+        "last_name": "Soriya",
+        "email": "soriya@gmail.com",
+        "password": "123456"
+    },
+    [
+        {
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "john@gmail.com",
+            "password": "123456"
+        }
+    ],
+    {
+        "first_name": "Ngan",
+        "last_name": "Soriya",
+        "email": "ngansoriya83@gmail.com",
+        "password": "123"
+    },
+    {
+        "first_name": "Ngan",
+        "last_name": "Soriya",
+        "email": "ngansoriya@gmail.com",
+        "password": "7799"
+    },
+    {
+        "first_name": "nana",
+        "last_name": "fill",
+        "email": "nana123@gmail.com",
+        "password": "1122"
+    }
+]

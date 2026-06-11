@@ -14,7 +14,6 @@
         href="{{ url_for('static', filename='front/style.css') }}">
 </head>
 <body>
-
 {% include 'front/share/navbar.html' %}
 <main>
 <section class="cart-section py-5">
@@ -47,50 +46,39 @@
                                 <p class="text-muted">
                                     {{ item.description[:100] }}...
                                 </p>
-
                                 <p class="text-warning">
                                     ${{ item.price }} × {{ item.qty }}
                                 </p>
-
                                 <p class="fw-bold">
                                     Total: ${{ item.item_total }}
                                 </p>
-
                             </div>
                             <!-- QTY -->
                             <div class="col-md-3 text-center">
-
                                 <div
-                                    class="d-flex justify-content-center align-items-center gap-2 mb-3"
-                                >
-
+                                    class="d-flex justify-content-center align-items-center gap-2 mb-3">
                                     <a
                                         href="/cart/decrease/{{ item.id }}"
                                         class="btn btn-dark"
                                     >
                                         -
                                     </a>
-
                                     <span class="fs-5">
                                         {{ item.qty }}
                                     </span>
-
                                     <a
                                         href="/cart/increase/{{ item.id }}"
                                         class="btn btn-dark"
                                     >
                                         +
                                     </a>
-
                                 </div>
-
                                 <a
                                     href="/cart/remove/{{ item.id }}"
                                     class="btn btn-outline-danger"
                                 >
                                     Remove
                                 </a>
-
                             </div>
                         </div>
                     </div>
@@ -98,146 +86,82 @@
                 {% endfor %}
             </div>
             <!-- ORDER SUMMARY -->
-         <!-- ORDER SUMMARY -->
-<div class="col-lg-4">
-
-    <div class="card shadow-sm">
-
-        <div class="card-body">
-
-            <h3 class="mb-4">
-                Order Summary
-            </h3>
-
-            <!-- PRODUCT LIST -->
-            {% for item in cart_products %}
-
-            <div class="d-flex justify-content-between mb-2">
-
-                <span>
-                    {{ item.title }} × {{ item.qty }}
-                </span>
-
-                <span>
-                    ${{ "%.2f"|format(item.item_total) }}
-                </span>
-
+            <div class="col-lg-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="mb-4">
+                            Order Summary
+                        </h3>
+                        <!-- PRODUCT LIST -->
+                        {% for item in cart_products %}
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>
+                                {{ item.title }} × {{ item.qty }}
+                            </span>
+                            <span>
+                                ${{ "%.2f"|format(item.item_total) }}
+                            </span>
+                        </div>
+                        {% endfor %}
+                        <hr>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Subtotal</span>
+                            <span>
+                                ${{ "%.2f"|format(subtotal) }}
+                            </span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Shipping</span>
+                            <span>
+                                ${{ "%.2f"|format(shipping) }}
+                            </span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Tax (5%)</span>
+                            <span>
+                                ${{ "%.2f"|format(tax) }}
+                            </span>
+                        </div>
+                        <hr>
+                        <div
+                            class="d-flex justify-content-between fw-bold fs-5"
+                        >
+                            <span>Total</span>
+                            <span>
+                                ${{ "%.2f"|format(total) }}
+                            </span>
+                        </div>
+                        <a
+                            href="/checkout"
+                            class="btn btn-dark w-100 mt-4"
+                        >
+                            Proceed To Checkout
+                        </a>
+                    </div>
+                </div>
             </div>
-
-            {% endfor %}
-
-            <hr>
-
-            <div class="d-flex justify-content-between mb-3">
-
-                <span>Subtotal</span>
-
-                <span>
-                    ${{ "%.2f"|format(subtotal) }}
-                </span>
-
+            {% else %}
+            <!-- EMPTY CART -->
+            <div class="text-center py-5">
+                <h1 style="font-size:90px;">
+                    🛍️
+                </h1>
+                <h2 class="mb-3">
+                    Your Cart Is Empty
+                </h2>
+                <p class="text-muted">
+                    Start shopping your luxury collection.
+                </p>
+                <a
+                    href="/shop"
+                    class="btn btn-dark px-4 py-2"
+                >
+                    Continue Shopping
+                </a>
             </div>
-
-            <div class="d-flex justify-content-between mb-3">
-
-                <span>Shipping</span>
-
-                <span>
-                    ${{ "%.2f"|format(shipping) }}
-                </span>
-
-            </div>
-
-            <div class="d-flex justify-content-between mb-3">
-
-                <span>Tax (5%)</span>
-
-                <span>
-                    ${{ "%.2f"|format(tax) }}
-                </span>
-
-            </div>
-
-            <hr>
-
-            <div
-                class="d-flex justify-content-between fw-bold fs-5"
-            >
-
-                <span>Total</span>
-
-                <span>
-                    ${{ "%.2f"|format(total) }}
-                </span>
-
-            </div>
-
-            <a
-                href="/checkout"
-                class="btn btn-dark w-100 mt-4"
-            >
-                Proceed To Checkout
-            </a>
-
+            {% endif %}
         </div>
-
-    </div>
-
-</div>
-{#                            <span>Subtotal</span>#}
-{#                            <span id="subtotal">$0.00</span>#}
-{#                        </div>#}
-{#                        <div#}
-{#                            class="d-flex justify-content-between mb-3"#}
-{#                        >#}
-{#                            <span>Shipping</span>#}
-{#                            <span id="shipping">$15.00</span>#}
-{#                        </div>#}
-{#                        <div#}
-{#                            class="d-flex justify-content-between mb-3"#}
-{#                        >#}
-{#                            <span>Tax (5%)</span>#}
-{#                            <span id="tax">$0.00</span>#}
-{#                        </div>#}
-{#                        <hr>#}
-{#                        <div#}
-{#                            class="d-flex justify-content-between fw-bold fs-5"#}
-{#                        >#}
-{#                            <span>Total</span>#}
-{#                            <span id="total">$0.00</span>#}
-{#                        </div>#}
-{#                        <a#}
-{#                            href="/checkout"#}
-{#                            class="btn btn-dark w-100 mt-4"#}
-{#                            id="checkoutBtn"#}
-{#                        >#}
-{#                            Proceed To Checkout#}
-{#                        </a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-        {% else %}
-        <!-- EMPTY CART -->
-        <div class="text-center py-5">
-            <h1 style="font-size:90px;">
-                🛍️
-            </h1>
-            <h2 class="mb-3">
-                Your Cart Is Empty
-            </h2>
-            <p class="text-muted">
-                Start shopping your luxury collection.
-            </p>
-            <a
-                href="/shop"
-                class="btn btn-dark px-4 py-2"
-            >
-                Continue Shopping
-            </a>
-        </div>
-        {% endif %}
-    </div>
+     </div>
 </section>
 </main>
 {% include 'front/share/footer.html' %}

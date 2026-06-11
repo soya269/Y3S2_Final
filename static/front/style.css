@@ -1624,3 +1624,336 @@ textarea.form-control{
     background:#d4a017;
     border:none;
 }
+
+/* contact */
+.contact-section{
+    background:#f8f8f8;
+}
+
+.contact-title{
+    font-size:3rem;
+    font-weight:700;
+}
+
+.contact-subtitle{
+    color:#777;
+}
+
+.contact-info-card,
+.contact-form-card{
+    background:#fff;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.contact-info-card h3,
+.contact-form-card h3{
+    margin-bottom:30px;
+    font-weight:700;
+}
+
+.info-item{
+    margin-bottom:30px;
+}
+
+.info-item h5{
+    color:#c89b3c;
+    margin-bottom:10px;
+}
+
+.info-item p{
+    color:#555;
+    margin:0;
+}
+
+.form-control{
+    padding:14px;
+    border-radius:10px;
+}
+
+.btn-dark{
+    border-radius:10px;
+    font-weight:600;
+}
+/*contact*/
+.contact-modern{
+    padding:100px 0;
+    background:#f7f7f7;
+}
+
+.contact-image{
+    max-height:650px;
+}
+
+.contact-small{
+    font-size:18px;
+    font-weight:600;
+}
+
+.contact-title{
+    font-size:72px;
+    font-weight:800;
+    line-height:1;
+    margin:10px 0 20px;
+}
+
+.contact-description{
+    color:#666;
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+.contact-content label{
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.contact-content .form-control{
+    height:55px;
+    border-radius:12px;
+    border:1px solid #ddd;
+    font-size:16px;
+}
+
+.contact-content textarea.form-control{
+    height:auto;
+    resize:none;
+}
+
+.btn-contact{
+    padding:14px 35px;
+    border-radius:12px;
+    font-weight:600;
+}
+
+@media(max-width:992px){
+
+    .contact-modern{
+        padding:60px 0;
+    }
+
+    .contact-title{
+        font-size:48px;
+        margin-top:20px;
+    }
+
+    .contact-image{
+        max-height:400px;
+        margin-bottom:30px;
+    }
+}
+
+/* ABOUT HERO */
+
+.about-hero img{
+    width:100%;
+    height:650px;
+    object-fit:cover;
+}
+
+/* ABOUT SECTION */
+
+.about-section{
+    padding:100px 0;
+    background:#fff;
+}
+
+.small-title{
+    color:#b8860b;
+    letter-spacing:2px;
+    font-weight:600;
+}
+
+.about-info h1{
+    font-size:70px;
+    font-weight:700;
+    margin:20px 0;
+    font-family: "Playfair Display", serif;
+}
+
+.about-info p{
+    color:#666;
+    line-height:1.9;
+    font-size:18px;
+}
+
+/* MISSION */
+
+.mission-section{
+    background:#f8f8f8;
+    padding:80px 0;
+}
+
+.mission-box{
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.mission-box h2{
+    margin-bottom:15px;
+    font-family:"Playfair Display", serif;
+}
+
+/* STATS */
+
+.stats-section{
+    padding:100px 0;
+}
+
+.stats-section h2{
+    font-size:55px;
+    font-weight:700;
+    color:#b8860b;
+}
+
+.stats-section p{
+    color:#666;
+    font-size:18px;
+}
+
+/*account*/
+.account-section{
+    padding:80px 0;
+    background:#f8f5f0;
+}
+
+.account-grid{
+    display:grid;
+    grid-template-columns:380px 1fr;
+    gap:30px;
+}
+
+.profile-card,
+.orders-card{
+    background:white;
+    border-radius:25px;
+    padding:35px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+.profile-avatar{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#c79a3b;
+    color:white;
+    font-size:38px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 20px;
+}
+
+.profile-card h2{
+    text-align:center;
+    margin-bottom:8px;
+}
+
+.profile-email{
+    text-align:center;
+    color:#777;
+}
+
+.member-badge{
+    background:#c79a3b;
+    color:white;
+    padding:10px 20px;
+    border-radius:30px;
+    text-align:center;
+    margin:25px auto;
+    width:fit-content;
+    font-weight:600;
+}
+
+.account-details{
+    margin-top:20px;
+}
+
+.detail-row{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+    border-bottom:1px solid #eee;
+}
+
+.logout-btn{
+    display:block;
+    width:100%;
+    margin-top:30px;
+    text-align:center;
+    text-decoration:none;
+    background:#111;
+    color:white;
+    padding:14px;
+    border-radius:35px;
+    font-weight:600;
+}
+
+.logout-btn:hover{
+    background:#c79a3b;
+    color:white;
+}
+
+.orders-card h3{
+    margin-bottom:25px;
+}
+
+.order-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 0;
+    border-bottom:1px solid #eee;
+}
+
+.order-item p{
+    margin:0;
+    color:#777;
+    font-size:14px;
+}
+
+.order-item span{
+    font-weight:700;
+    font-size:18px;
+}
+
+@media(max-width:768px){
+
+    .account-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+/*register*/
+.register-card{
+    background:white;
+    padding:50px;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    max-width:650px;
+    margin:auto;
+}
+
+.register-card input{
+    height:58px;
+    border-radius:15px;
+}
+
+.register-btn{
+    background:#c79a3b;
+    color:white;
+    height:58px;
+    border:none;
+    border-radius:35px;
+    font-weight:600;
+    font-size:18px;
+}
+
+.register-btn:hover{
+    background:#b8892f;
+    color:white;
+}

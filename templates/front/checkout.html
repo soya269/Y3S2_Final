@@ -4,66 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout | VELORA</title>
-
     <!-- Bootstrap -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
     >
-
     <!-- Main CSS -->
     <link
         rel="stylesheet"
         href="{{ url_for('static', filename='front/style.css') }}"
     >
-
-
-
 </head>
 <body>
-
 {% include 'front/share/navbar.html' %}
-
 <main>
-
     <!-- HERO -->
     <section class="checkout-hero">
-
         <div class="container">
-
             <span>SECURE CHECKOUT</span>
-
             <h1>Checkout</h1>
-
             <p>
                 Complete your luxury purchase securely with VELORA.
             </p>
-
         </div>
-
     </section>
-
-
     <!-- CHECKOUT -->
 <section class="checkout-section py-5">
-
     <div class="container">
-
         <form action="/place-order" method="POST">
-
             <div class="row g-4">
-
                 <!-- LEFT SIDE -->
                 <div class="col-lg-7">
-
                     <div class="checkout-card">
-
                         <h2 class="section-title text-center mb-5">
                             Billing Details
                         </h2>
-
                         <div class="row">
-
                             <div class="col-md-6 mb-3">
                                 <input
                                     type="text"
@@ -73,7 +49,6 @@
                                     required
                                 >
                             </div>
-
                             <div class="col-md-6 mb-3">
                                 <input
                                     type="text"
@@ -83,7 +58,6 @@
                                     required
                                 >
                             </div>
-
                             <div class="col-md-6 mb-3">
                                 <input
                                     type="email"
@@ -93,7 +67,6 @@
                                     required
                                 >
                             </div>
-
                             <div class="col-md-6 mb-3">
                                 <input
                                     type="text"
@@ -103,7 +76,6 @@
                                     required
                                 >
                             </div>
-
                             <div class="col-12 mb-3">
                                 <input
                                     type="text"
@@ -113,7 +85,6 @@
                                     required
                                 >
                             </div>
-
                             <div class="col-md-6 mb-3">
                                 <input
                                     type="text"
@@ -122,7 +93,6 @@
                                     placeholder="City"
                                 >
                             </div>
-
                             <div class="col-md-6 mb-3">
                                 <input
                                     type="text"
@@ -131,7 +101,6 @@
                                     placeholder="Postal Code"
                                 >
                             </div>
-
                             <div class="col-12 mb-4">
                                 <textarea
                                     name="notes"
@@ -140,20 +109,16 @@
                                     placeholder="Order Notes"
                                 ></textarea>
                             </div>
-
                         </div>
-
                         <h2 class="section-title text-center mb-4">
                             Payment Method
                         </h2>
-
                         <input
                             type="hidden"
                             name="payment_method"
                             id="payment_method"
                             value="card"
                         >
-
                         <div
                             class="payment-card active mb-3"
                             id="card-btn"
@@ -161,7 +126,6 @@
                         >
                             💳 Credit / Debit Card
                         </div>
-
                         <div
                             class="payment-card mb-4"
                             id="khqr-btn"
@@ -169,30 +133,24 @@
                         >
                             📱 KHQR Payment
                         </div>
-
                         <!-- CARD DETAILS -->
                         <div id="card-content">
-
                             <h5 class="mb-3">
                                 Card Details
                             </h5>
-
                             <input
                                 type="text"
                                 name="card_holder"
                                 class="form-control mb-3"
                                 placeholder="Card Holder Name"
                             >
-
                             <input
                                 type="text"
                                 name="card_number"
                                 class="form-control mb-3"
                                 placeholder="Card Number"
                             >
-
                             <div class="row">
-
                                 <div class="col-md-6">
                                     <input
                                         type="text"
@@ -201,7 +159,6 @@
                                         placeholder="MM / YY"
                                     >
                                 </div>
-
                                 <div class="col-md-6">
                                     <input
                                         type="text"
@@ -210,47 +167,33 @@
                                         placeholder="CVV"
                                     >
                                 </div>
-
                             </div>
-
                         </div>
-
                         <!-- KHQR -->
                         <div
                             id="khqr-content"
                             class="d-none text-center"
                         >
-
                             <img
                                 src="{{ url_for('static', filename='front/images/khqr.png') }}"
                                 alt="KHQR"
                                 class="img-fluid mb-3"
                                 style="max-width:180px;"
                             >
-
                             <h5 class="text-success">
                                 Total: ${{ total }}
                             </h5>
-
                         </div>
-
                     </div>
-
                 </div>
-
                 <!-- RIGHT SIDE -->
                 <div class="col-lg-5">
-
                     <div class="checkout-card">
-
                         <h2 class="section-title text-center mb-4">
                             Order Review
                         </h2>
-
                         {% for item in cart_products %}
-
                         <div class="order-item d-flex align-items-center mb-3">
-
                             <img
                                 src="{{ item.images[0] }}"
                                 width="70"
@@ -258,120 +201,80 @@
                                 class="rounded"
                                 alt="{{ item.title }}"
                             >
-
                             <div class="ms-3 flex-grow-1">
-
                                 <h6 class="mb-1">
                                     {{ item.title }}
                                 </h6>
-
                                 <small class="text-muted">
                                     Qty : {{ item.qty }}
                                 </small>
-
                             </div>
-
                             <strong>
                                 ${{ item.price * item.qty }}
                             </strong>
-
                         </div>
-
                         <hr>
-
                         {% endfor %}
-
                         <div class="d-flex justify-content-between mb-2">
                             <span>Subtotal</span>
                             <strong>${{ subtotal }}</strong>
                         </div>
-
                         <div class="d-flex justify-content-between mb-2">
                             <span>Shipping</span>
                             <strong>${{ shipping }}</strong>
                         </div>
-
                         <div class="d-flex justify-content-between mb-2">
                             <span>Tax</span>
                             <strong>${{ tax }}</strong>
                         </div>
-
                         <hr>
-
                         <div class="d-flex justify-content-between fs-3 fw-bold mb-4">
                             <span>Total</span>
                             <span>${{ total }}</span>
                         </div>
-
                         <button
                             type="submit"
                             class="btn btn-warning w-100 py-3"
                         >
                             Place Order
                         </button>
-
                     </div>
-
                 </div>
-
             </div>
-
         </form>
-
     </div>
-
 </section>
 </main>
-
 {% include 'front/share/footer.html' %}
-
 <script>
-
     function placeOrder(){
-
         const message =
             document.getElementById("successMessage");
-
         message.style.display = "block";
-
         setTimeout(() => {
-
             window.location.href = "/";
-
         }, 2500);
-
     }
-
 function togglePayment(type){
-
     document.getElementById("card-content")
         .classList.add("d-none");
-
     document.getElementById("khqr-content")
         .classList.add("d-none");
-
     document.getElementById(type + "-content")
         .classList.remove("d-none");
-
     document.getElementById("payment_method")
         .value = type;
 }
-
 // Default selection when page loads
 document.addEventListener(
     "DOMContentLoaded",
     function () {
-
         togglePayment("card");
-
     }
 );
-
 </script>
-
 <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 ></script>
-
 </body>
 </html>
