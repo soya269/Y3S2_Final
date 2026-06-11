@@ -418,79 +418,76 @@ def account():
 # ==============================
 @app.route("/place-order", methods=["POST"])
 def place_order():
-
-    cart_products = get_cart()
-
-    if not cart_products:
-        return redirect("/cart")
-
-    first_name = request.form.get("first_name", "").strip()
-    last_name = request.form.get("last_name", "").strip()
-    email = request.form.get("email", "").strip()
-    phone = request.form.get("phone", "").strip()
-    address = request.form.get("address", "").strip()
-    payment_method = request.form.get(
-        "payment_method",
-        "card"
-    )
-
-    totals = calculate_totals(cart_products)
-
-    # SAVE ORDERS
     try:
-        with open("orders.json", "r") as f:
-            orders = json.load(f)
-    except:
-        orders = []
+        cart_products = get_cart()
 
-    order_id = random.randint(100000, 999999)
+        if not cart_products:
+            return redirect("/cart")
 
-    for item in cart_products:
-        orders.append({
-            ...
-        })
-
-    with open("orders.json", "w") as f:
-        json.dump(orders, f, indent=4)
-
-    # TELEGRAM MESSAGE
-    message = (
-        "🛒 NEW ORDER RECEIVED\n\n"
-        f"🆔 Order ID: #{order_id}\n"
-        f"👤 Customer: {first_name} {last_name}\n"
-        f"📧 Email: {email}\n"
-        f"📱 Phone: {phone}\n"
-        f"🏠 Address: {address}\n"
-        f"💳 Payment: {payment_method}\n\n"
-        "📦 PRODUCTS\n\n"
-    )
-
-    for item in cart_products:
-
-        message += (
-            f"• {item['title']}\n"
-            f"  Qty: {item['qty']}\n"
-            f"  Price: ${item['price']}\n"
-            f"  Total: ${item['item_total']}\n\n"
+        first_name = request.form.get("first_name", "").strip()
+        last_name = request.form.get("last_name", "").strip()
+        email = request.form.get("email", "").strip()
+        phone = request.form.get("phone", "").strip()
+        address = request.form.get("address", "").strip()
+        payment_method = request.form.get(
+            "payment_method",
+            "Cash On Delivery"
         )
 
-    message += (
-        f"Subtotal: ${totals['subtotal']}\n"
-        f"Shipping: ${totals['shipping']}\n"
-        f"Tax: ${totals['tax']}\n"
-        f"💰 Grand Total: ${totals['total']}"
-    )
+        totals = calculate_totals(cart_products)
 
-    send_telegram_message(message)
+        order_id = random.randint(100000, 999999)
 
-    response = make_response(
-        redirect("/order-success")
-    )
+        # Build Telegram Message
+        message = (
+            "🛒 NEW ORDER RECEIVED\n\n"
+            f"🆔 Order ID: #{order_id}\n"
+            f"👤 Customer: {first_name} {last_name}\n"
+            f"📧 Email: {email}\n"
+            f"📱 Phone: {phone}\n"
+            f"🏠 Address: {address}\n"
+            f"💳 Payment: {payment_method}\n\n"
+            "📦 PRODUCTS\n\n"
+        )
 
-    # Clear cart
-    response.delete_cookie("cart_list")
+        for item in cart_products:
+            message += (
+                f"• {item.get('title', 'Unknown Product')}\n"
+                f"  Qty: {item.get('qty', 0)}\n"
+                f"  Price: ${item.get('price', 0)}\n"
+                f"  Total: ${item.get('item_total', 0)}\n\n"
+            )
 
-    return response
+        message += (
+            f"Subtotal: ${totals.get('subtotal', 0)}\n"
+            f"Shipping: ${totals.get('shipping', 0)}\n"
+            f"Tax: ${totals.get('tax', 0)}\n"
+            f"💰 Grand Total: ${totals.get('total', 0)}"
+        )
+
+        # Telegram
+        try:
+            send_telegram_message(message)
+        except Exception as telegram_error:
+            print("Telegram Error:", telegram_error)
+
+        response = make_response(
+            redirect("/order-success")
+        )
+
+        response.delete_cookie("cart_list")
+
+        return response
+
+    except Exception as e:
+        import traceback
+        print(traceback.format_exc())
+
+        return (
+            f"<h1>Order Error</h1>"
+            f"<pre>{str(e)}</pre>",
+            500
+        )
 # ==============================
 # ORDER-SUCCESS
 # ==============================
