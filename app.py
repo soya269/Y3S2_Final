@@ -4,9 +4,19 @@ import requests
 from product import (products,get_product_by_id,get_product_by_title,
                      get_related_products)
 import json
-import os
 import random
+import os
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+USERS_FILE = os.path.join(BASE_DIR, "users.json")
+ORDERS_FILE = os.path.join(BASE_DIR, "orders.json")
+try:
+    with open(USERS_FILE, "r") as f:
+        users = json.load(f)
+except:
+    users = []
+    with open(USERS_FILE, "w") as f:
+        json.dump(users, f, indent=4)
 app = Flask(__name__)
 app.secret_key = "velora_secret"
 # ==============================
