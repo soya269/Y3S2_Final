@@ -245,24 +245,41 @@ def checkout():
 # ==============================
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
     if request.method == "POST":
-        email = request.form.get("email")
-        password = request.form.get("password")
+
+        email = request.form.get("email", "").strip().lower()
+        password = request.form.get("password", "")
+
         try:
             with open("users.json", "r") as f:
                 users = json.load(f)
-        except:
+
+            if not isinstance(users, list):
+                users = []
+
+        except (FileNotFoundError, json.JSONDecodeError):
             users = []
+
         for user in users:
+
             if not isinstance(user, dict):
                 continue
-            if (
-                user.get("email") == email and
-                user.get("password") == password
-            ):
+
+            user_email = user.get("email", "").strip().lower()
+            user_password = user.get("password", "")
+
+            if user_email == email and user_password == password:
+
                 session["user"] = user
+
                 return redirect("/account")
-        return "Invalid Email or Password"
+
+        return render_template(
+            "front/login.html",
+            error="Invalid Email or Password"
+        )
+
     return render_template("front/login.html")
 # ==============================
 # LOGOUT
@@ -279,11 +296,14 @@ def register():
 
     if request.method == "POST":
 
-        first_name = request.form.get("first_name")
-        last_name = request.form.get("last_name")
-        email = request.form.get("email")
-        password = request.form.get("password")
-        confirm_password = request.form.get("confirm_password")
+        first_name = request.form.get("first_name", "").strip()
+        last_name = request.form.get("last_name", "").strip()
+        email = request.form.get("email", "").strip().lower()
+        password = request.form.get("password", "")
+        confirm_password = request.form.get("confirm_password", "")
+
+        if not first_name or not last_name or not email or not password:
+            return "All fields are required"
 
         if password != confirm_password:
             return "Passwords do not match"
@@ -295,16 +315,13 @@ def register():
             if not isinstance(users, list):
                 users = []
 
-        except:
+        except (FileNotFoundError, json.JSONDecodeError):
             users = []
 
-        # check existing email
+        # Check existing email
         for user in users:
-
-            if isinstance(user, dict):
-
-                if user.get("email") == email:
-                    return "Email already exists"
+            if isinstance(user, dict) and user.get("email", "").lower() == email:
+                return "Email already exists"
 
         new_user = {
             "first_name": first_name,
@@ -315,10 +332,12 @@ def register():
 
         users.append(new_user)
 
-        with open("users.json", "w") as f:
-            json.dump(users, f, indent=4)
+        try:
+            with open("users.json", "w") as f:
+                json.dump(users, f, indent=4)
+        except Exception as e:
+            return f"Error saving user: {e}"
 
-        # auto login
         session["user"] = new_user
 
         return redirect("/account")
@@ -332,59 +351,113 @@ def forgot_password():
 
     if request.method == "POST":
 
-        email = request.form.get("email")
+        email = request.form.get(
+            "email", ""
+        ).strip().lower()
 
         try:
             with open("users.json", "r") as f:
                 users = json.load(f)
+
+            if not isinstance(users, list):
+                users = []
+
         except:
             users = []
 
         for user in users:
 
-            if isinstance(user, dict):
+            if not isinstance(user, dict):
+                continue
 
-                if user.get("email") == email:
+            if user.get(
+                "email", ""
+            ).strip().lower() == email:
 
-                    return render_template(
-                        "front/reset_password.html",
-                        email=email
-                    )
+                session["reset_email"] = email
 
-        return "Email not found"
+                return redirect("/reset-password")
 
-    return render_template("front/forgot-password.html")
+        return render_template(
+            "front/forgot-password.html",
+            error="Email not found"
+        )
+
+    return render_template(
+        "front/forgot-password.html"
+    )
 # ==============================
 # REST-PASSWORD
 # ==============================
-@app.route("/reset-password", methods=["POST"])
+@app.route("/reset-password", methods=["GET", "POST"])
 def reset_password():
 
-    email = request.form.get("email")
-    password = request.form.get("password")
-    confirm_password = request.form.get("confirm_password")
+    email = session.get("reset_email")
 
-    if password != confirm_password:
-        return "Passwords do not match"
+    if not email:
+        return redirect("/forgot-password")
 
-    try:
-        with open("users.json", "r") as f:
-            users = json.load(f)
-    except:
-        users = []
+    if request.method == "POST":
 
-    for i, user in enumerate(users):
+        password = request.form.get(
+            "password", ""
+        ).strip()
 
-        if isinstance(user, dict):
+        confirm_password = request.form.get(
+            "confirm_password", ""
+        ).strip()
 
-            if user.get("email") == email:
-                users[i]["password"] = password
+        if password != confirm_password:
+
+            return render_template(
+                "front/reset_password.html",
+                email=email,
+                error="Passwords do not match"
+            )
+
+        try:
+
+            with open("users.json", "r") as f:
+                users = json.load(f)
+
+            if not isinstance(users, list):
+                users = []
+
+        except:
+            users = []
+
+        user_found = False
+
+        for user in users:
+
+            if not isinstance(user, dict):
+                continue
+
+            if user.get("email", "").lower() == email.lower():
+
+                user["password"] = password
+                user_found = True
                 break
 
-    with open("users.json", "w") as f:
-        json.dump(users, f, indent=4)
+        if not user_found:
 
-    return redirect("/login")
+            return render_template(
+                "front/reset_password.html",
+                email=email,
+                error="Account not found"
+            )
+
+        with open("users.json", "w") as f:
+            json.dump(users, f, indent=4)
+
+        session.pop("reset_email", None)
+
+        return redirect("/login")
+
+    return render_template(
+        "front/reset_password.html",
+        email=email
+    )
 # ==============================
 # ACCOUNT
 # ==============================
